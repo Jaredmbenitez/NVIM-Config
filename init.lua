@@ -652,7 +652,21 @@ require("lazy").setup({
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				-- clangd = {},
-				-- gopls = {},
+				gopls = {
+					settings = {
+						gopls = {
+							hints = {
+								assignVariableTypes = true,
+								compositeLiteralFields = true,
+								compositeLiteralTypes = true,
+								constantValues = true,
+								functionTypeParameters = true,
+								parameterNames = true,
+								rangeVariableTypes = true,
+							},
+						},
+					},
+				},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -961,16 +975,16 @@ require("lazy").setup({
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end, { desc = "Harpoon Toggle Quick Menu" })
 
-			vim.keymap.set("n", "<C-h>", function()
+			vim.keymap.set("n", "<leader>1", function()
 				harpoon:list():select(1)
 			end, { desc = "Harpoon Go to File 1" })
-			vim.keymap.set("n", "<C-t>", function()
+			vim.keymap.set("n", "<leader>2", function()
 				harpoon:list():select(2)
 			end, { desc = "Harpoon Go to File 2" })
-			vim.keymap.set("n", "<C-n>", function()
+			vim.keymap.set("n", "<leader>3", function()
 				harpoon:list():select(3)
 			end, { desc = "Harpoon Go to File 3" })
-			vim.keymap.set("n", "<C-s>", function()
+			vim.keymap.set("n", "<leader>4", function()
 				harpoon:list():select(4)
 			end, { desc = "Harpoon Go to File 4" })
 
@@ -1027,6 +1041,7 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
+				"go",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
